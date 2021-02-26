@@ -5,7 +5,6 @@ namespace App\Http\Middleware;
 use App\Http\Resources\Api\v1\ErrorResource;
 use Closure;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 class TokenMiddleware
 {
