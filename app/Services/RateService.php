@@ -12,6 +12,7 @@ class RateService
     {
         return QueryBuilder::for(Rate::class)
             ->allowedFilters('currency')
+            ->defaultSort('markup_price')
             ->get();
     }
 }
