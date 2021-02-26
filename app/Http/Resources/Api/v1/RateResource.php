@@ -4,7 +4,7 @@ namespace App\Http\Resources\Api\v1;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-/** @mixin \App\Entities\Rate */
+/** @mixin \App\Models\Rate */
 class RateResource extends JsonResource
 {
     /**
@@ -16,9 +16,10 @@ class RateResource extends JsonResource
     public function toArray($request)
     {
         return [
-            $this->getCurrency() => [
-                'price'        => $this->getPrice(),
-                'markup_price' => $this->getMarkupPrice()
+            $this->currency => [
+                'price'        => $this->price,
+                'markup_price' => $this->markup_price,
+                'symbol'       => $this->symbol,
             ]
         ];
     }

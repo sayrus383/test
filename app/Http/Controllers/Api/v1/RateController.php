@@ -2,24 +2,24 @@
 
 namespace App\Http\Controllers\Api\v1;
 
-use App\Entities\Rate;
+use App\Models\Rate;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Api\v1\RateResource;
-use App\Services\BlockChainService;
-use Illuminate\Http\Request;
+use App\Services\RateService;
+use Spatie\QueryBuilder\QueryBuilder;
 
 class RateController extends Controller
 {
-    protected $blockChainService;
+    protected $rateService;
 
-    public function __construct(BlockChainService $blockChainService)
+    public function __construct(RateService $rateService)
     {
-        $this->blockChainService = $blockChainService;
+        $this->rateService = $rateService;
     }
 
     public function index()
     {
-        $rates = $this->blockChainService->rates();
+        $rates = $this->rateService->getRates();
 
         return RateResource::collection($rates);
     }
