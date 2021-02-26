@@ -8,6 +8,7 @@ RATE_PERCENT=2 - если вдруг наценка для курсов увел
 
 ## Обновление тикера
 ```
-php artisan rates:update 
+php artisan rates:update - обновление курсов
+php artisan schedule:run - обновление курсов каждую минуту
 Так же добавил интерфейс для тикеров, если сменится сервис получения курсов (App\Contracts\Services\RateTickerInterface)
 ```
