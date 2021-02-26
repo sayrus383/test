@@ -2,13 +2,14 @@
 
 namespace App\Services;
 
+use App\Contracts\Services\RateInterface;
 use App\Entities\Rate;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class BlockChainService
+class BlockChainService implements RateInterface
 {
     private $client;
 

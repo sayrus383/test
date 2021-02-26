@@ -15,7 +15,7 @@ class CreateRatesTable extends Migration
     {
         Schema::create('rates', function (Blueprint $table) {
             $table->id();
-            $table->string('currency');
+            $table->string('currency')->unique();
             $table->double('price');
             $table->double('markup_price');
             $table->string('symbol');

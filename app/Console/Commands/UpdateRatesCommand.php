@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Contracts\Services\RateInterface;
 use App\Models\Rate;
 use App\Services\BlockChainService;
 use Illuminate\Console\Command;
@@ -22,35 +23,35 @@ class UpdateRatesCommand extends Command
      */
     protected $description = 'Обновление курсов с тикера';
 
-    protected $blockChainService;
+    protected $rateService;
 
     /**
      * Create a new command instance.
      *
-     * @param BlockChainService $blockChainService
+     * @param RateInterface $rateService
      */
-    public function __construct(BlockChainService $blockChainService)
+    public function __construct(RateInterface $rateService)
     {
-        $this->blockChainService = $blockChainService;
+        $this->rateService = $rateService;
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
+
     public function handle()
     {
-        $rates = $this->blockChainService->rates();
+        $rates = $this->rateService->rates();
 
         foreach ($rates as $rate) {
-            Rate::create([
-                'currency'     => $rate->getCurrency(),
-                'price'        => $rate->getPrice(),
-                'markup_price' => $rate->getMarkupPrice(),
-                'symbol'       => $rate->getSymbol(),
-            ]);
+            Rate::updateOrCreate(
+                [
+                    'currency' => $rate->getCurrency(),
+                ],
+                [
+                    'price'        => $rate->getPrice(),
+                    'markup_price' => $rate->getMarkupPrice(),
+                    'symbol'       => $rate->getSymbol(),
+                ]
+            );
         }
     }
 }
