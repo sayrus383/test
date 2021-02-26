@@ -4,7 +4,7 @@ namespace App\Contracts\Services;
 
 use App\Entities\Rate;
 
-interface RateInterface
+interface RateTickerInterface
 {
     /**
      * Получение курсов с массивом ентити Rate. Интерфейс, в случае если поменяется сервис тикера

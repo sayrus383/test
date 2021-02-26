@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Tickers;
 
-use App\Contracts\Services\RateInterface;
+use App\Contracts\Services\RateTickerInterface;
 use App\Entities\Rate;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\BadResponseException;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
-class BlockChainService implements RateInterface
+class BlockChainService implements RateTickerInterface
 {
     private $client;
 

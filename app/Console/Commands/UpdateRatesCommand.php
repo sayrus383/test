@@ -2,9 +2,8 @@
 
 namespace App\Console\Commands;
 
-use App\Contracts\Services\RateInterface;
+use App\Contracts\Services\RateTickerInterface;
 use App\Models\Rate;
-use App\Services\BlockChainService;
 use Illuminate\Console\Command;
 
 class UpdateRatesCommand extends Command
@@ -23,23 +22,23 @@ class UpdateRatesCommand extends Command
      */
     protected $description = 'Обновление курсов с тикера';
 
-    protected $rateService;
+    protected $rateTickerService;
 
     /**
      * Create a new command instance.
      *
-     * @param RateInterface $rateService
+     * @param RateTickerInterface $rateService
      */
-    public function __construct(RateInterface $rateService)
+    public function __construct(RateTickerInterface $rateTickerService)
     {
-        $this->rateService = $rateService;
+        $this->rateTickerService = $rateTickerService;
         parent::__construct();
     }
 
 
     public function handle()
     {
-        $rates = $this->rateService->rates();
+        $rates = $this->rateTickerService->rates();
 
         foreach ($rates as $rate) {
             Rate::updateOrCreate(

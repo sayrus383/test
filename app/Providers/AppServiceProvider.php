@@ -3,8 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Contracts\Services\RateInterface;
-use App\Services\BlockChainService;
+use App\Contracts\Services\RateTickerInterface;
+use App\Services\Tickers\BlockChainService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -15,7 +15,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(RateInterface::class, BlockChainService::class);
+        $this->app->bind(RateTickerInterface::class, BlockChainService::class);
     }
 
     /**
